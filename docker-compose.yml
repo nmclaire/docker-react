@@ -1,0 +1,45 @@
+version: '3'
+services:
+  web: # for web container
+    build: 
+      context: .    # means the location of the images and folder we need (current folder)
+      dockerfile: Dockerfile.dev
+    ports:
+      -  "3000:3000"
+    volumes:
+      - /app/node_modules
+      -  .:/app
+  tests:     # for tests container
+    build: 
+      context: .    # means the location of the images and folder we need (current folder)
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      -  .:/app
+    command: ["npm", "run", "test"]   #to override starting command
+
+
+
+
+
+
+#Slide 78: The above steps are the same as the following command:
+#docker run - p 3000:3000 -v /app/node_modules -v $(pwd):/app <image_id>
+#docker run  -p 3000:3000 -v /app/node_modules  -v $(pwd):/app 44a283641838
+
+# we wanna perform the following steps in the container:
+#npm run start
+#npm run test
+
+# docker build using a  dockerfile.dev
+# docker build -f Dockerfile.dev .
+
+# run test in our container
+# docker run container_id npm run test
+# docker run 99f19076cb4a npm run test
+#docker run -it 99f19076cb4a npm run test (# to get more details ????)
+#docker exec -it 99f19076cb4a npm run test (this get live updates)
+
+#docker-compose up --build
+
+#docker attach 1116128e602e (attaching terminal to container(stdin, stdout, and stderr))
