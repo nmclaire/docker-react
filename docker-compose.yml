@@ -43,3 +43,8 @@ services:
 #docker-compose up --build
 
 #docker attach 1116128e602e (attaching terminal to container(stdin, stdout, and stderr))
+
+
+#start our container and use nginx default port(80)
+#docker run -p 8080:80 docker_id
+
