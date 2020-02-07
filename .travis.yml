@@ -1,11 +1,7 @@
 sudo: required
 services:
   - docker
-
 before_install:
   - docker build -t nimaclara/docker-react -f Dockerfile.dev .
-  - npm install -g yarn
-
 script: 
   - docker run nimaclara/docker-react  npm run test -- --coverage
-
